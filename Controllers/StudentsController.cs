@@ -64,6 +64,7 @@ namespace Kida_1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(CreateStudentViewModel vm)
         {
+            vm.Course = vm.Course ?? new List<SelectListItem>();
             var student = new Student
             {
                 Name = vm.Name,
@@ -77,7 +78,7 @@ namespace Kida_1.Controllers
                 {
                     student.Enrollment.Add(new StudentCourse()
                     {
-                        CourseID = 9
+                        CourseID = int.Parse(item)
                     }) ;
                 }
             }
